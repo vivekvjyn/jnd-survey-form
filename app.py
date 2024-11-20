@@ -7,9 +7,8 @@ import os
 load_dotenv()
 
 app = Flask(__name__)
-print(os.getenv('USER'))
-uri = f'mongodb+srv://{os.getenv('USER')}:{os.getenv('PASSWORD')}@cluster0.dbm54.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
-print(uri)
+
+uri = f"mongodb+srv://{os.getenv('USER')}:{os.getenv('PASSWORD')}@cluster0.dbm54.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 client = MongoClient(uri, server_api=ServerApi('1'))
 
 db = client["jnd-survey"]
