@@ -24,13 +24,14 @@ samples = random.sample(samples, 10)
 info = json.load(open("static/info.json"))
 info = {sample: info[sample] for sample in samples}
 
-print(info.values())
+# number of samples for each test
+n_samples = 10
 
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
         # Get the responses from the form and update the database
-        responses = [request.form.get(f"sample-{i}") for i in range(10)]
+        responses = [request.form.get(f"sample-{i}") for i in range(n_samples)]
         responses = [1 if response == "yes" else 0 for response in responses]
         collection.insert_one({"samples": samples, "responses": responses})
 
