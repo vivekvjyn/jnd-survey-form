@@ -11,7 +11,7 @@
         {% for i, sample in enumerate(samples) %}
         <div>
             <audio controls>
-                <source src="{{ url_for('static', filename=sample) }}" type="audio/mpeg">
+                <source src="{{ url_for('static', filename = "audio/" + sample) }}" type="audio/mpeg">
             </audio>
             <div>
                 <label>
