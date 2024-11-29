@@ -50,8 +50,8 @@ def form():
     """
     return render_template("form.html", samples=samples, enumerate=enumerate)
     
-@app.route("/confirm", methods=["POST"])
-def confirm():
+@app.route("/feedback", methods=["POST"])
+def feedback():
     """
     Save the responses to the database,  and render a confirmation page.
     """
@@ -66,7 +66,7 @@ def confirm():
         collection.insert_one({"samples": samples, "responses": responses})
 
         # Render the confirmation
-        return render_template("confirm.html")
+        return render_template("feedback.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
