@@ -20,14 +20,13 @@ client = MongoClient(uri, server_api=ServerApi('1'))
 db = client["jnd-survey"]
 collection = db["responses"]
 
-# Select 10 random audio samples and get their info
-samples = os.listdir("static/audio")
-samples = random.sample(samples, 10)
-info = json.load(open("static/info.json"))
-info = {sample: info[sample] for sample in samples}
-
-# number of samples for each test
-n_samples = 10
+# Select random audio samples
+n_samples = 12
+positives = [f"positives/{sample}" for sample in os.listdir("static/audio/positives")]
+positives = random.sample(positives, n_samples - 3)
+negatives = [f"negatives/{sample}" for sample in os.listdir("static/audio/negatives")]
+samples = positives + negatives
+random.shuffle(samples)
 
 @app.route("/")
 def index():
