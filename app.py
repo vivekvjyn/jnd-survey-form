@@ -37,6 +37,8 @@ def form():
         # Get the responses from the form and update the database
         responses = [request.form.get(f"sample-{i}") for i in range(n_samples)]
         responses = [1 if response == "yes" else 0 for response in responses]
+
+        return str(responses)
         collection.insert_one({"samples": samples, "responses": responses})
 
         return "Thank you for participating in the survey!"
