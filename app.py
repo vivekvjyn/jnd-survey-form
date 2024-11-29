@@ -27,8 +27,12 @@ info = {sample: info[sample] for sample in samples}
 # number of samples for each test
 n_samples = 10
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/")
 def index():
+    return render_template("index.html")
+
+@app.route("/form", methods=["GET", "POST"])
+def form():
     if request.method == "POST":
         # Get the responses from the form and update the database
         responses = [request.form.get(f"sample-{i}") for i in range(n_samples)]
@@ -38,7 +42,7 @@ def index():
         return "Thank you for participating in the survey!"
 
     else:
-        return render_template("index.html", samples=samples, enumerate=enumerate)
+        return render_template("form.html", samples=samples, enumerate=enumerate)
 
 if __name__ == "__main__":
     app.run(debug=True)

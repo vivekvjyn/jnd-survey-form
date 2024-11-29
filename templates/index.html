@@ -6,25 +6,7 @@
     <title>JND Survey</title>
 </head>
 <body>
-    <h1>JND Survey</h1>
-    <form method="POST">
-        {% for i, sample in enumerate(samples) %}
-        <div>
-            <audio controls>
-                <source src="{{ url_for('static', filename = "audio/" + sample) }}" type="audio/mpeg">
-            </audio>
-            <div>
-                <label>
-                    <input type="radio" name="sample-{{ i }}" value="yes" required> Yes
-                </label>
-                <label>
-                    <input type="radio" name="sample-{{ i }}" value="no"> No
-                </label>
-            </div>
-        </div>
-        <hr>
-        {% endfor %}
-        <button type="submit">Submit</button>
-    </form>
+    Welcome to the Survey
+    <a href="{{ url_for('form') }}">Start</a>
 </body>
 </html>
