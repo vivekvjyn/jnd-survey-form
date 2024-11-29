@@ -38,7 +38,7 @@ def form():
         responses = [request.form.get(f"sample-{i}") for i in range(n_samples)]
         responses = [1 if response == "yes" else 0 for response in responses]
 
-        return str(collection.find())
+        return str(collection.find_one())
         collection.insert_one({"samples": samples, "responses": responses})
 
         return "Thank you for participating in the survey!"
