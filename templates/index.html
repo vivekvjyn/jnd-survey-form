@@ -4,9 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JND Survey</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 </head>
 <body>
-    Welcome to the Survey
-    <a href="{{ url_for('form') }}">Start</a>
+    <div class="container">
+        <h1>JND Survey</h1>
+        <p>
+            Thank you for participating in this study. Your responses will be anonymous, and your data will not be sold to third parties. Please ensure you are in a quiet place and that your headphones are of good quality and functioning properly.
+        </p>
+
+        <h2>Calibrate your headphones</h2>
+        <p>
+            First, we will calibrate the volume. You will hear 20 seconds of music in the audio below. Adjust your device’s volume to a comfortable level.
+        </p>
+
+        <audio controls>
+            <source src="{{ url_for('static', filename = 'audio/survey-calibration-violin.wav') }}" type="audio/wav">
+        </audio>
+
+        <h2>Instructions</h2>
+        <p>
+            You will listen to a series of audio clips, each lasting about 4 seconds. Each clip contains two sounds separated by a brief silence. Your task is to determine whether the two sounds are the same or if you perceive any difference between them. For each clip, indicate your response in the questionnaire:
+            <ul>
+                <li>Yes: if the sounds are the same.</li>
+                <li>No: if you perceive any difference between them.</li>
+            </ul>
+            You will now hear 3 test audio clips to familiarize yourself with the process.
+        </p>
+
+        <p>
+            Once you are ready, click the brain below to start the survey.
+        </p>
+
+        <a href="{{ url_for('form') }}">
+            <img src="{{ url_for('static', filename = 'img/working_brain.webp') }}">
+        </a>
+    </div>
 </body>
 </html>
