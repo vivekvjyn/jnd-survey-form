@@ -16,10 +16,10 @@ app.config['MAX_CONTENT_LENGTH'] = 64 * 1024
 uri = f"mongodb+srv://{os.getenv('USER')}:{os.getenv('PASSWORD')}@cluster0.dbm54.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 client = MongoClient(uri, server_api=ServerApi('1'))
 db = client[os.getenv('DB_NAME')]
-collection = db["responses"]
+collection = db[os.getenv('COLLECTION_NAME')]
 
 # Total number of audio samples for the survey
-n_samples = 12
+n_samples = 16
 
 # Load the positive audio sample filenames
 positives = [

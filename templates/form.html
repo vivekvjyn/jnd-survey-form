@@ -15,6 +15,9 @@
                 <audio controls>
                     <source src="{{ url_for('static', filename = 'audio/' + sample) }}" type="audio/mpeg">
                 </audio>
+
+                <p>Are the two sounds the same?</p>
+                
                 <div>
                     <label>
                         <input type="radio" name="sample-{{ i }}" value="yes" required> Yes
