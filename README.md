@@ -45,7 +45,7 @@ COLLECTION_NAME=collection_name
 ```
 Configure your `.env` with appropriate variables.
 
-Ensure you have MongoDB installed and running. Create a database named `DATABASE` with a collection named `COLLECTION`.
+Ensure you have MongoDB installed and running. Create a database named `DB_NAME` with a collection named `COLLECTION_NAME`.
 
 Make desired changes.
 
