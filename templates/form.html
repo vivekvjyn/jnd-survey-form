@@ -9,7 +9,11 @@
 <body>
     <div class="form-container">
         <h1>JND Survey</h1>
+        {% if page < 3 %}
+        <form action="/form?page={{ page + 1 }}" method="POST" enctype="multipart/form-data">
+        {% else %}
         <form action="/feedback" method="POST" enctype="multipart/form-data">
+        {% endif %}
             {% for i, sample in enumerate(samples) %}
             <div class="sample">
                 <audio controls>
@@ -29,7 +33,12 @@
             </div>
             <hr>
             {% endfor %}
+            {% if page < 3 %}
+            <button type="submit">Next</button>
+            {% else %}
             <button type="submit">Submit</button>
+            {% endif %}
+            </div>
         </form>
     </div>
 </body>
