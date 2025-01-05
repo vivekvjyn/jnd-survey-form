@@ -60,7 +60,7 @@ def form():
     else:
         session.clear()
 
-    return render_template("form.html", samples=curr_samples, page=page, enumerate=enumerate)
+    return render_template("form.html", samples=curr_samples, page=page, enumerate=enumerate, len=len)
     
 @app.route("/feedback", methods=["POST"])
 def feedback():

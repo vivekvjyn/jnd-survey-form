@@ -16,6 +16,7 @@
         {% endif %}
             {% for i, sample in enumerate(samples) %}
             <div class="sample">
+                <p class="index">{{ (page - 1) * len(samples) + i + 1 }}</p>
                 <audio controls>
                     <source src="{{ url_for('static', filename = 'audio/' + sample) }}" type="audio/mpeg">
                 </audio>

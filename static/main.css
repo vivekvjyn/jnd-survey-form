@@ -122,6 +122,11 @@ hr {
     background-color: #ff17b2;
 }
 
+.index {
+    color: white;
+    font-weight: bold;
+}
+
 .thank-you {
     text-align: center;
     margin-top: 20px;
