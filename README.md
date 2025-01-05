@@ -7,34 +7,26 @@ This repository is used to host the **Just Noticeable Difference (JND)** survey 
 ## Use template
 Clone the Repository.
 ```bash
-git clone https://github.com/enter-opy/strawberry-fields.git
-cd sound-of-music
+git clone https://github.com/enter-opy/jnd-survey.git
+cd jnd-survey
 ```
-### Environment setup
 Create a virtual environment.
 ```bash
-pip install virtualenv
-virtualenv venv
+python -m venv .venv
 ```
-Activate the environment.
-
    **Windows:**
 ```bash
 venv\Scripts\activate
 ```
-
    **Linux:**
 ```bash
 source venv/bin/activate
 ```
-
-Install the required packages using pip with the `requirements.txt` file.
-
 ```bash
 pip install -r requirements.txt
 ```
 
-Create a `.env` file in the root directory of your project and copy the following into the file.
+Add `.env` file in the root directory.
 
 ```makefile
 SECRET_KEY=secret_key
@@ -42,14 +34,17 @@ USER=username
 PASSWORD=password
 DB_NAME=database_name
 COLLECTION_NAME=collection_name
+NUM_SAMPLES=num_samples
 ```
-Configure your `.env` with appropriate variables.
 
-Ensure you have MongoDB installed and running. Create a database named `DB_NAME` with a collection named `COLLECTION_NAME`.
+Set up a MongoDB database `DB_NAME` with collection `COLLECTION_NAME`.
 
-Make desired changes.
+```bash
+cd static/audio
+```
+Place your positive and negative samples here.
 
-### Run the application
+To run locally,
 
 ```bash
 python -m flask run
