@@ -5,9 +5,9 @@ from flask import Flask, render_template, request, session
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
-# Load environment variables from the .env file
 load_dotenv()
 
+# Flask configuration
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['MAX_CONTENT_LENGTH'] = 64 * 1024
@@ -18,23 +18,20 @@ client = MongoClient(uri, server_api=ServerApi('1'))
 db = client[os.getenv('DB_NAME')]
 collection = db[os.getenv('COLLECTION_NAME')]
 
-# Total number of audio samples for the survey
+# Form configuration
 num_samples = int(os.getenv('NUM_SAMPLES'))
 num_pages = 3
 samples_per_page = num_samples // num_pages
 
-# Load the positive audio sample filenames
+# Load audio sample filenames
 positives = [
     f"positives/{sample}" for sample in os.listdir("static/audio/positives")
 ]
-#positives = random.sample(positives, n_samples - 3) # Randomly select required positive samples
-
-# Load the negative audio sample filenames
 negatives = [
     f"negatives/{sample}" for sample in os.listdir("static/audio/negatives")
 ]
 
-# Combine positives and negatives, then shuffle the samples
+# Concatenate and shuffle positive and negative samples
 samples = positives + negatives
 random.shuffle(samples)
 
@@ -51,7 +48,6 @@ def form():
     Render the survey form.
     """
     page = int(request.args.get("page", 1))
-    print(page)
     curr_samples = samples[(page - 1) * samples_per_page: page * samples_per_page]
 
     if request.method == "POST":
@@ -64,8 +60,6 @@ def form():
     else:
         session.clear()
 
-    print(session)
-
     return render_template("form.html", samples=curr_samples, page=page, enumerate=enumerate)
     
 @app.route("/feedback", methods=["POST"])
@@ -74,7 +68,6 @@ def feedback():
     Save the responses to the database,  and render a confirmation page.
     """
     if request.method == "POST":
-        # Get the responses from the submitted form
         responses = [request.form.get(f"sample-{i}") for i in range(samples_per_page)]
         responses = [1 if response == "yes" else 0 for response in responses]
 
@@ -83,11 +76,9 @@ def feedback():
         for sample in prev_samples:
             prev_responses.append(session.get(sample))
 
-        print(prev_responses)
-
         collection.insert_one({"samples": samples, "responses": prev_responses + responses})
 
-        # Render the confirmation
+        session.clear()
         return render_template("feedback.html")
 
 if __name__ == "__main__":
