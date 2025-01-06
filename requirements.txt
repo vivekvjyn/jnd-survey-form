@@ -1,4 +1,4 @@
 Flask
-gunicorn
 pymongo[srv]
 python-dotenv
+waitress

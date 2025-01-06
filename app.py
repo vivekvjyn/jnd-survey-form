@@ -35,6 +35,11 @@ negatives = [
 samples = positives + negatives
 random.shuffle(samples)
 
+@app.after_request
+def ngrok_header(response):
+    response.headers['ngrok-skip-browser-warning'] = '1'
+    return response
+
 @app.route("/")
 def index():
     """
