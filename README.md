@@ -2,8 +2,6 @@
 
 This repository is used to host the **Just Noticeable Difference (JND)** survey form as part of the **Sound and Music Computing** program at **UPF** for the **Music Cognition and Perception** course.
 
-### [Take the Test](https://jnd-survey.vercel.app)
-
 ## Use template
 Clone the Repository.
 ```bash
@@ -26,6 +24,20 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+```plaintext
+├── .env
+├── app.py
+├── static
+│   ├── audio
+│   │   ├── negatives
+│   │   └── positives
+│   ├── img
+│   └── main.css
+└── templates
+    ├── feedback.html
+    ├── form.html
+    └── index.html
+```
 Add `.env` file in the root directory.
 
 ```makefile
@@ -39,10 +51,7 @@ NUM_SAMPLES=num_samples
 
 Set up a MongoDB database `DB_NAME` with collection `COLLECTION_NAME`.
 
-```bash
-cd static/audio
-```
-Place your positive and negative samples here.
+Place your positive and negative samples inside `audio` folder.
 
 To run locally,
 
