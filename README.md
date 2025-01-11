@@ -8,6 +8,8 @@ Clone the Repository.
 git clone https://github.com/enter-opy/jnd-survey.git
 cd jnd-survey
 ```
+<hr>
+
 Create a virtual environment.
 ```bash
 python -m venv .venv
@@ -20,9 +22,7 @@ venv\Scripts\activate
 ```bash
 source venv/bin/activate
 ```
-```bash
-pip install -r requirements.txt
-```
+<hr>
 
 ```plaintext
 ├── .env
@@ -38,6 +38,9 @@ pip install -r requirements.txt
     ├── form.html
     └── index.html
 ```
+```bash
+pip install -r requirements.txt
+```
 Add `.env` file in the root directory.
 
 ```makefile
@@ -52,6 +55,7 @@ NUM_SAMPLES=num_samples
 Set up a MongoDB database `DB_NAME` with collection `COLLECTION_NAME`.
 
 Place your positive and negative samples inside `audio` folder.
+<hr>
 
 To run locally,
 
