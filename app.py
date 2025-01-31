@@ -23,7 +23,7 @@ num_samples = int(os.getenv('NUM_SAMPLES'))
 num_pages = 3
 samples_per_page = num_samples // num_pages
 
-# Load audio sample filenames
+# Collect audio sample filenames
 positives = [
     f"positives/{sample}" for sample in os.listdir("static/audio/positives")
 ]
@@ -34,11 +34,6 @@ negatives = [
 # Concatenate and shuffle positive and negative samples
 samples = positives + negatives
 random.shuffle(samples)
-
-@app.after_request
-def ngrok_header(response):
-    response.headers['ngrok-skip-browser-warning'] = '1'
-    return response
 
 @app.route("/")
 def index():
@@ -58,7 +53,7 @@ def form():
     if request.method == "POST":
         responses = [request.form.get(f"sample-{i}") for i in range(samples_per_page)]
         responses = [1 if response == "yes" else 0 for response in responses]
-        
+
         prev_samples = samples[(page - 2) * samples_per_page: (page - 1) * samples_per_page]
         for sample, response in zip(prev_samples, responses):
             session[sample] = response
@@ -66,7 +61,7 @@ def form():
         session.clear()
 
     return render_template("form.html", samples=curr_samples, page=page, enumerate=enumerate, len=len)
-    
+
 @app.route("/feedback", methods=["POST"])
 def feedback():
     """

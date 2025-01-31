@@ -54,7 +54,7 @@ NUM_SAMPLES=num_samples
 
 Set up a MongoDB database `DB_NAME` with collection `COLLECTION_NAME`.
 
-Place your positive and negative samples inside `audio` folder.
+Place your samples in `audio/positive` and `audio/negative` folders.
 <hr>
 
 To run locally,
