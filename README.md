@@ -5,7 +5,7 @@ This repository is used to host the **Just Noticeable Difference (JND)** survey 
 ## Use template
 Clone the Repository.
 ```bash
-git clone https://github.com/enter-opy/jnd-survey.git
+git clone https://github.com/vivekvjyn/jnd-survey.git
 cd jnd-survey
 ```
 <hr>
